@@ -1,13 +1,11 @@
 package br.comspringapi.springapi.controller;
 
 import br.comspringapi.springapi.dto.ClienteDTO;
-import jakarta.websocket.server.PathParam;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.util.List;
 
 @Controller
 
@@ -17,16 +15,17 @@ public class HomeController {
     private ClienteDTO clienteDTO;
 
     @GetMapping(value = "/")
-    public String home(Principal user) {
-        System.out.println(user);
+    public String home(HttpServletRequest request) {
+        System.out.println(request.getHeader("Accept-Language"));
+        System.out.println(request.getParameter("nome"));
+        System.out.println(request.getUserPrincipal());
         return "home";
     }
 
     @PostMapping(value = "/")
-    public String home(@RequestBody ClienteDTO clienteDTO){
-        System.out.println(clienteDTO.getNome());
-        System.out.println(clienteDTO.getIdade());
-
+    public String homer(HttpServletRequest request){
+        System.out.println(request.getParameter("nome"));
+        System.out.println(request.getParameter("idade"));
         return "redirect:/";
     }
 }
