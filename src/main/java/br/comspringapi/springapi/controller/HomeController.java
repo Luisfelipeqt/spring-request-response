@@ -2,6 +2,7 @@ package br.comspringapi.springapi.controller;
 
 import br.comspringapi.springapi.dto.ClienteDTO;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,8 @@ public class HomeController {
     }
 
     @PostMapping(value = "/")
-    public ResponseEntity<ClienteDTO> homer(@RequestBody ClienteDTO clienteDTO){
-        System.out.println(clienteDTO.getNome());
-        System.out.println(clienteDTO.getIdade());
-        System.out.println(clienteDTO);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .header("Teste", "Teste")
-                .header("Teste2", "Teste2")
-                .body(clienteDTO);
+    public void homer(@RequestBody ClienteDTO clienteDTO, HttpServletResponse response) {
+        response.setStatus(201);
+        response.setHeader("Teste","Teste");
     }
 }
