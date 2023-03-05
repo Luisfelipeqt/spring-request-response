@@ -8,24 +8,21 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-
 public class HomeController {
 
     @Autowired
     private ClienteDTO clienteDTO;
 
     @GetMapping(value = "/")
-    public String home(HttpServletRequest request) {
-        System.out.println(request.getHeader("Accept-Language"));
-        System.out.println(request.getParameter("nome"));
-        System.out.println(request.getUserPrincipal());
+    public String home() {
+
         return "home";
     }
 
     @PostMapping(value = "/")
-    public String homer(HttpServletRequest request){
-        System.out.println(request.getParameter("nome"));
-        System.out.println(request.getParameter("idade"));
-        return "redirect:/";
+    @ResponseBody
+    public ClienteDTO homer(@RequestBody ClienteDTO clienteDTO){
+
+        return clienteDTO;
     }
 }
