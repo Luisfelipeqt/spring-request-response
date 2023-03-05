@@ -23,7 +23,7 @@ public class HomeController {
     }
 
     @PostMapping(value = "/")
-    public String home(@PathParam("/") ClienteDTO clienteDTO){
+    public String home(@RequestBody ClienteDTO clienteDTO){
         System.out.println(clienteDTO.getNome());
         System.out.println(clienteDTO.getIdade());
 
